@@ -1,12 +1,13 @@
+var Nightmare = require('nightmare'),
+    Q = require('q');
 
-var getBondInfo = function(serial, date, type){
-  var Nightmare = require('nightmare'),
-      Q = require('q');
+var getBondInfo = function(serial, date, value, type){
   var d = Q.defer();
-  new Nightmare()
+  Nightmare()
   .goto("http://www.treasurydirect.gov/BC/SBCPrice")
   .type('[name="IssueDate"]',date)
   .type('[name="SerialNumber"]',serial)
+  .select('[name="Denomination"]', value)
   .click('input[type="submit"]')
   .wait()
   .evaluate(function(){
