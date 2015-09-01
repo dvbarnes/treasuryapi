@@ -1,0 +1,23 @@
+{
+  "name": "treasuryapi",
+  "version": "1.0.0",
+  "description": "api scraping for treasury bonds",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvbarnes/treasuryapi.git"
+  },
+  "author": "David Barnes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dvbarnes/treasuryapi/issues"
+  },
+  "homepage": "https://github.com/dvbarnes/treasuryapi#readme",
+  "dependencies": {
+    "nightmare": "^1.8.2",
+    "q": "^1.4.1"
+  }
+}
