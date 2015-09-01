@@ -1,6 +1,6 @@
 {
   "name": "treasuryapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "api scraping for treasury bonds",
   "main": "index.js",
   "scripts": {
