@@ -1,21 +1,19 @@
-var Nightmare = require('nightmare'),
-    Q = require('q');
+var Nightmare = require('nightmare')
 
-var getBondInfo = function(serial, date, value, type){
-  var d = Q.defer();
-  Nightmare()
+const getBondInfoAsync = async function(serial: string, date, value:number){
+  const m = await Nightmare()
   .goto("http://www.treasurydirect.gov/BC/SBCPrice")
   .type('[name="IssueDate"]',date)
   .type('[name="SerialNumber"]',serial)
   .select('[name="Denomination"]', value)
   .click('input[type="submit"]')
-  .wait()
-  .evaluate(function(){
-    return [].map.call(document.querySelectorAll('table.bnddata .altrow1 td'), function(td){
-      return td.innerText;
-    });
-  }, function(m){
-    d.resolve({
+  .wait('table.bnddata .altrow1 td')
+  .evaluate(()=>{
+      return [...document.querySelectorAll('table.bnddata .altrow1 td')]
+      .map(td=>(<any>td).innerText);
+  })
+  .end();
+  return {
       serial: m[0],
       series: m[1],
       denomination: m[2],
@@ -27,11 +25,9 @@ var getBondInfo = function(serial, date, value, type){
       interestRate:m[8],
       value: m[9],
       note: m[10]
-    });
-  })
-  .run();
-  return d.promise;
+    };
 }
+
 module.exports = {
-  getBondInfo: getBondInfo
+  getBondInfoAsync: getBondInfoAsync
 };

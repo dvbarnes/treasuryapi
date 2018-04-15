@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/dvbarnes/treasuryapi#readme",
   "dependencies": {
-    "nightmare": "^1.8.2",
-    "q": "^1.4.1"
+    "nightmare": "^3.0.1"
   }
 }
